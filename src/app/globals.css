@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171411;
+  --header-height: 5.25rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 5rem;
+  }
 }
 
 @theme inline {

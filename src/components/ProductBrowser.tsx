@@ -39,7 +39,7 @@ export function ProductBrowser() {
 
   return (
     <section id="containers" className="scroll-mt-24 border-t border-line bg-cream">
-      <div className="sticky top-[4.5rem] z-40 border-b border-line bg-cream/95 backdrop-blur-md sm:top-20">
+      <div className="sticky top-[var(--header-height)] z-40 border-b border-line bg-cream/95 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-5 py-4 sm:px-8">
           <div
             role="tablist"

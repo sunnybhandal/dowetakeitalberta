@@ -1,5 +1,4 @@
 import { ProductBrowser } from "@/components/ProductBrowser";
-import { site } from "@/lib/site";
 
 const prepSteps = [
   {
@@ -90,9 +89,6 @@ export default function Home() {
           <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] text-ink min-[410px]:text-5xl sm:text-6xl">
             Do we take it?
           </h1>
-          <p className="mt-5 max-w-xl font-display text-2xl leading-snug text-forest sm:text-3xl">
-            Most ready-to-drink containers from Alberta are refundable.
-          </p>
           <p className="mt-5 max-w-2xl text-base leading-7 text-stone sm:text-lg">
             Choose Yes or No. You’ll see a picture, the name, and a short note when you need one.
           </p>
@@ -102,9 +98,6 @@ export default function Home() {
             </li>
             <li className="rounded-full border border-line bg-cream px-4 py-2 text-center text-sm font-medium text-ink">
               25¢ over 1 litre
-            </li>
-            <li className="rounded-full border border-line bg-cream px-4 py-2 text-center text-sm font-medium text-ink">
-              Purchased in Alberta
             </li>
           </ul>
         </div>
@@ -129,60 +122,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section id="visit" className="scroll-mt-24 border-t border-line bg-cream">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-sage">Visit</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-ink sm:text-5xl">
-              Trail Bottle Depot
-            </h2>
-            <p className="mt-5 font-display text-xl leading-snug text-forest sm:text-2xl">
-              Bring your empties in. We’ll count them and refund your deposit.
-            </p>
-            <address className="mt-8 text-base leading-7 text-ink not-italic sm:text-lg">
-              {site.addressLines.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </address>
-            <a
-              href={site.mapsHref}
-              className="mt-3 inline-flex text-base font-medium text-forest underline decoration-forest/40 underline-offset-4 hover:decoration-forest"
-            >
-              Get directions
-            </a>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={site.phoneHref}
-                className="inline-flex h-12 items-center justify-center rounded-full border border-forest bg-forest px-6 text-base font-medium text-white transition-colors hover:bg-white hover:text-forest"
-              >
-                {site.phone}
-              </a>
-              <a
-                href={site.emailHref}
-                className="inline-flex h-12 items-center justify-center rounded-full border border-stone px-6 text-base font-medium text-ink transition-colors hover:border-forest hover:text-forest"
-              >
-                {site.email}
-              </a>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-line bg-white px-5 py-6 sm:px-8 sm:py-8">
-            <h3 className="font-display text-2xl text-ink">Hours</h3>
-            <dl className="mt-6">
-              {site.hours.map((row) => (
-                <div key={row.days} className="flex items-baseline justify-between gap-6 border-b border-line py-3 text-base">
-                  <dt className="text-stone">{row.days}</dt>
-                  <dd className="shrink-0 font-medium text-ink">{row.time}</dd>
-                </div>
-              ))}
-            </dl>
-            <p className="mt-5 text-sm leading-6 text-stone">{site.holidayNote}</p>
-          </div>
         </div>
       </section>
     </>

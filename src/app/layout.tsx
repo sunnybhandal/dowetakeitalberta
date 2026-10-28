@@ -23,16 +23,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: `Do We Take It? | ${site.name}`,
+  title: {
+    default: site.name,
+    template: `%s | ${site.name}`,
+  },
   description: site.description,
   keywords: [
-    "Trail Bottle Depot",
-    "Calgary bottle depot",
+    "Alberta bottle depot",
     "beverage container refund",
+    "do we take it",
     "what does the bottle depot accept",
   ],
   openGraph: {
-    title: `Do We Take It? | ${site.name}`,
+    title: site.name,
     description: site.description,
   },
 };
