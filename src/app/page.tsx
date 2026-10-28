@@ -84,7 +84,7 @@ export default function Home() {
       <section className="bg-white">
         <div className="mx-auto w-full max-w-6xl px-5 pt-10 pb-8 sm:px-8 sm:pt-14 sm:pb-10">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-sage">
-            Calgary bottle recycling
+            Alberta Recycling Standards
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] text-ink min-[410px]:text-5xl sm:text-6xl">
             Do we take it?
