@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171411;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-forest: #178ea3;
+  --color-forest-deep: #127181;
+  --color-sage: #4b8b96;
+  --color-gold: #b08a3a;
+  --color-gold-deep: #7a5c22;
+  --color-cream: #f5f2ea;
+  --color-stone: #6a675f;
+  --color-line: #e5e1d6;
+  --color-ink: #171411;
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-poppins);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: #178ea3;
+  color: #ffffff;
+}
+
+@keyframes list-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.list-in {
+  animation: list-in 280ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .list-in {
+    animation: none;
+  }
+}
