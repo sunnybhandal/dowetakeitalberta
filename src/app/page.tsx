@@ -111,14 +111,16 @@ export default function Home() {
           <h2 className="mt-4 max-w-2xl font-display text-4xl leading-tight text-ink sm:text-5xl">
             A few things that make the return easy
           </h2>
-          <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {prepSteps.map((step) => (
-              <li key={step.key}>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-white">
+              <li key={step.key} className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lime text-white">
                   {step.icon}
                 </div>
-                <h3 className="mt-4 font-display text-2xl leading-snug text-forest">{step.title}</h3>
-                <p className="mt-3 text-base leading-7 text-stone">{step.body}</p>
+                <div className="min-w-0">
+                  <h3 className="font-display text-2xl leading-snug text-forest">{step.title}</h3>
+                  <p className="mt-2 text-base leading-7 text-stone">{step.body}</p>
+                </div>
               </li>
             ))}
           </ul>

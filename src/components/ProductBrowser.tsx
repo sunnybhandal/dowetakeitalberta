@@ -68,22 +68,19 @@ export function ProductBrowser() {
 
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
         <div key={choice} className="list-in" role="tabpanel" id="product-panel" aria-labelledby={choice === "yes" ? "tab-yes" : "tab-no"}>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-sage">
-            {list.items.length} {list.items.length === 1 ? "item" : "items"}
-          </p>
-          <h2 className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl">{list.title}</h2>
+          <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">{list.title}</h2>
           <p className="mt-3 max-w-2xl text-base leading-7 text-stone sm:text-lg">{list.intro}</p>
 
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+          <ul className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
             {list.items.map((item) => (
               <li key={item.id}>
-                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white">
-                  <div className="flex h-44 items-center justify-center bg-cream px-4">
+                <article className="flex h-full flex-row items-stretch overflow-hidden rounded-xl border border-line bg-white sm:flex-col">
+                  <div className="flex w-28 shrink-0 items-center justify-center bg-cream px-1.5 py-2 sm:h-44 sm:w-auto sm:px-4 [&_svg]:h-20 [&_svg]:w-auto sm:[&_svg]:h-36 sm:[&_svg]:w-full">
                     <ProductArt id={item.id} />
                   </div>
-                  <div className="flex flex-1 flex-col border-t border-line p-5">
-                    <h3 className="font-display text-xl leading-snug text-ink">{item.name}</h3>
-                    <p className="mt-2 text-sm leading-6 text-stone sm:text-[15px]">{item.description}</p>
+                  <div className="flex min-w-0 flex-1 flex-col justify-center border-l border-line px-3 py-2.5 sm:border-t sm:border-l-0 sm:p-5">
+                    <h3 className="font-display text-base leading-snug text-ink sm:text-xl">{item.name}</h3>
+                    <p className="mt-1 text-[13px] leading-5 text-stone sm:mt-2 sm:text-[15px] sm:leading-6">{item.description}</p>
                   </div>
                 </article>
               </li>
@@ -112,8 +109,8 @@ function Tab({
 }) {
   const selectedClass =
     tone === "ink"
-      ? "border-ink bg-ink text-white"
-      : "border-forest bg-forest text-white";
+      ? "border-no bg-no text-white"
+      : "border-lime bg-lime text-white";
 
   return (
     <button

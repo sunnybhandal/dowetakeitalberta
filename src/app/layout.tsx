@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: site.name,
+    default: `Do we take it? | ${site.name}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "what does the bottle depot accept",
   ],
   openGraph: {
-    title: site.name,
+    title: `Do we take it? | ${site.name}`,
     description: site.description,
   },
 };
