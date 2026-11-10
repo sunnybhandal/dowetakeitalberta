@@ -204,7 +204,7 @@ export function BeverageBot() {
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          className="bob-pop fixed z-40 flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-[0_20px_60px_rgba(33,5,87,0.22)] top-[calc(var(--header-height)+0.75rem)] right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 print:hidden sm:top-auto sm:right-6 sm:bottom-6 sm:left-auto sm:h-[min(36rem,calc(100dvh-3rem))] sm:w-[24rem]"
+          className="bob-pop fixed z-40 flex flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-[0_20px_60px_rgba(33,5,87,0.22)] top-[calc(var(--header-height)+0.75rem)] right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 print:hidden sm:top-auto sm:right-auto sm:bottom-6 sm:left-6 sm:h-[min(36rem,calc(100dvh-3rem))] sm:w-[24rem]"
         >
           <div className="flex items-center gap-3 bg-forest px-4 py-3 text-white">
             <BobAvatar size="md" />
@@ -323,7 +323,7 @@ export function BeverageBot() {
           </form>
         </div>
       ) : (
-        <div className="fixed z-40 right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] print:hidden sm:right-6 sm:bottom-6">
+        <div className="fixed z-40 bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 print:hidden sm:bottom-6 sm:left-6">
           <button
             ref={launcherRef}
             type="button"
