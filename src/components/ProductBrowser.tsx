@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { ProductArt } from "@/components/ProductArt";
 import { acceptedProducts, declinedProducts, type Product } from "@/lib/products";
 
 type Choice = "yes" | "no";
@@ -71,24 +71,41 @@ export function ProductBrowser() {
           <h2 className="font-display text-3xl leading-tight text-ink sm:text-4xl">{list.title}</h2>
           <p className="mt-3 max-w-2xl text-base leading-7 text-stone sm:text-lg">{list.intro}</p>
 
-          <ul className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {list.items.map((item) => (
-              <li key={item.id}>
-                <article className="flex h-full flex-row items-stretch overflow-hidden rounded-xl border border-line bg-white sm:flex-col">
-                  <div className="flex w-28 shrink-0 items-center justify-center bg-cream px-1.5 py-2 sm:h-44 sm:w-auto sm:px-4 [&_svg]:h-20 [&_svg]:w-auto sm:[&_svg]:h-36 sm:[&_svg]:w-full">
-                    <ProductArt id={item.id} />
-                  </div>
-                  <div className="flex min-w-0 flex-1 flex-col justify-center border-l border-line px-3 py-2.5 sm:border-t sm:border-l-0 sm:p-5">
-                    <h3 className="font-display text-base leading-snug text-ink sm:text-xl">{item.name}</h3>
-                    <p className="mt-1 text-[13px] leading-5 text-stone sm:mt-2 sm:text-[15px] sm:leading-6">{item.description}</p>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
+          <CategorySections items={list.items} />
         </div>
       </div>
     </section>
+  );
+}
+
+function CategorySections({ items }: { items: Product[] }) {
+  return (
+    <div className="mt-10">
+      {items.map((item) => (
+        <section key={item.id} aria-labelledby={`category-${item.id}`} className="border-t border-line py-10 first:border-t-0 first:pt-0">
+          <h3 id={`category-${item.id}`} className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+            {item.name}
+          </h3>
+          <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+            {item.photos?.map((photo) => (
+              <li key={photo.src}>
+                <figure className="overflow-hidden rounded-xl border border-line bg-white">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={1024}
+                    height={1024}
+                    className="aspect-square w-full object-cover"
+                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
+                  />
+                  <figcaption className="border-t border-line px-3 py-2.5 text-sm font-medium text-ink">{photo.name}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
   );
 }
 

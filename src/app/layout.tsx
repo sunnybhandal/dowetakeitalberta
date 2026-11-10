@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Poppins } from "next/font/google";
+import { BeverageBot } from "@/components/BeverageBot";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
@@ -20,6 +21,7 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
+  interactiveWidget: "resizes-content",
 };
 
 export const metadata: Metadata = {
@@ -62,6 +64,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <BeverageBot />
       </body>
     </html>
   );
