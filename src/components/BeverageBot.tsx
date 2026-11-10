@@ -54,7 +54,10 @@ export function BeverageBot() {
 
   useEffect(() => {
     if (open && !wasOpen.current) {
-      inputRef.current?.focus();
+      const smallScreen = window.matchMedia("(max-width: 639px)").matches;
+      if (!smallScreen) {
+        inputRef.current?.focus();
+      }
     }
     if (!open && wasOpen.current) {
       launcherRef.current?.focus();
