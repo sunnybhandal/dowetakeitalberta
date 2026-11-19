@@ -74,13 +74,11 @@ const rules: Rule[] = [
     "paint",
     "windex",
   ]),
-  declined("coffee-creamer", [
-    "coffee creamer",
-    "oil based creamer",
-    "creamer",
-    "non dairy creamer",
-    "nondairy creamer",
-  ]),
+  accepted(
+    "coffee-creamer",
+    ["coffee creamer", "oil based creamer", "creamer", "non dairy creamer", "nondairy creamer"],
+    "Liquid coffee creamer, including oil-based creamer, is refundable. Empty it, rinse it, and it needs to have been bought in Alberta.",
+  ),
   declined("powdered-creamer", ["powdered creamer", "creamer powder"]),
   declined("syrups", ["syrup", "flavour drop", "flavor drop", "water enhancer", "mio"]),
   declined("powdered-mixes", [
@@ -138,7 +136,7 @@ const rules: Rule[] = [
     phrases: ["plastic bag", "grocery bag", "shopping bag", "straw"],
   },
   accepted("wine-boxes", ["boxed wine", "wine box", "bag in box", "box of wine"]),
-  accepted("juice-boxes", ["juice box", "apple juice box"], "Juice and other drinks in rectangle boxes are refundable. Soup cartons are not. Empty it, and it needs to have been bought in Alberta."),
+  accepted("drink-pouches", ["juice box", "apple juice box"], "Juice and other drinks in rectangle boxes are refundable. Soup cartons are not. Empty it, and it needs to have been bought in Alberta."),
   accepted("drink-pouches", ["capri sun", "drink pouch", "juice pouch"]),
   {
     verdict: "yes",
@@ -146,7 +144,7 @@ const rules: Rule[] = [
     body: `Steel juice and drink cans, including cans with an aluminum top. ${bringIn}`,
     phrases: ["juice can", "pineapple juice", "steel can"],
   },
-  accepted("cartons", [
+  accepted("milk-products", [
     "milk carton",
     "cream carton",
     "juice carton",
@@ -163,7 +161,7 @@ const rules: Rule[] = [
     body: `Almond, oat, soy, and other dairy-free drinks in cartons, jugs, or bottles. ${bringIn}`,
     phrases: ["almond milk", "oat milk", "soy milk", "oatmilk", "plant based milk", "plant milk", "dairy free milk"],
   },
-  accepted("milk-jugs", ["milk jug", "plastic milk", "milk"], "Plastic milk jugs are refundable. Milk and cream cartons are too. Empty them, rinse them, and they need to have been bought in Alberta."),
+  accepted("milk-products", ["milk jug", "plastic milk", "milk"], "Plastic milk jugs and milk and cream cartons are refundable. Empty them, rinse them, and they need to have been bought in Alberta."),
   accepted(
     "aluminum-cans",
     ["aluminum can", "aluminium can", "beer can", "pop can", "soda can", "cider can", "energy drink", "sparkling water", "seltzer", "red bull", "monster"],
@@ -176,8 +174,8 @@ const rules: Rule[] = [
   ),
   accepted(
     "glass-bottles",
-    ["glass bottle", "beer bottle", "wine bottle", "liquor bottle", "cooler bottle", "kombucha", "wine", "liquor", "cooler", "glass"],
-    "Beer, wine, liquor, coolers, pop, and juice in glass are refundable. Don’t bring broken glass. Empty it, and it needs to have been bought in Alberta.",
+    ["glass bottle", "beer bottle", "wine bottle", "liquor bottle", "kombucha", "wine", "liquor", "glass"],
+    "Beer, wine, liquor, pop, and juice in glass are refundable. Don’t bring broken glass. Empty it, and it needs to have been bought in Alberta.",
   ),
   accepted("drinkable-yogurt", ["drinkable yogurt", "yogurt drink", "yoghurt", "kefir", "yogurt"]),
   {
@@ -192,7 +190,7 @@ const rules: Rule[] = [
     "Cans and bottles of pop, beer, and cider are refundable. Empty them, and they need to have been bought in Alberta.",
   ),
   accepted(
-    "juice-boxes",
+    "drink-pouches",
     ["juice", "tetra pak", "tetra pack"],
     "Juice boxes, cartons, bottles, and cans are refundable when they held a drink. Soup and broth cartons are not. Empty it, and it needs to have been bought in Alberta.",
   ),

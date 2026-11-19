@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { useBobChat } from "@/components/BobChatProvider";
 import { bobSuggestions, identifyContainer, type BobAnswer } from "@/lib/bob";
 
 type Attachment = {
@@ -30,11 +31,13 @@ export function BeverageBot() {
   const fileRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
+  const promptDismissed = useRef(false);
   const busy = useRef(false);
   const timer = useRef<number | null>(null);
   const idCount = useRef(0);
 
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useBobChat();
+  const [showPrompt, setShowPrompt] = useState(false);
   const [messages, setMessages] = useState<Message[]>([welcome]);
   const [presets, setPresets] = useState<string[]>([...bobSuggestions]);
   const [draft, setDraft] = useState("");
@@ -45,12 +48,27 @@ export function BeverageBot() {
   const chips = presets;
 
   useEffect(() => {
+    const promptTimer = window.setTimeout(() => {
+      if (!promptDismissed.current) {
+        setShowPrompt(true);
+      }
+    }, 5000);
+
     return () => {
+      window.clearTimeout(promptTimer);
       if (timer.current !== null) {
         window.clearTimeout(timer.current);
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+    promptDismissed.current = true;
+    setShowPrompt(false);
+  }, [open]);
 
   useEffect(() => {
     if (open && !wasOpen.current) {
@@ -60,7 +78,11 @@ export function BeverageBot() {
       }
     }
     if (!open && wasOpen.current) {
-      launcherRef.current?.focus();
+      const active = document.activeElement;
+      const fromHeader = active instanceof Element && active.closest("[data-bob-launch]");
+      if (!fromHeader) {
+        launcherRef.current?.focus();
+      }
     }
     wasOpen.current = open;
   }, [open]);
@@ -75,12 +97,6 @@ export function BeverageBot() {
   useEffect(() => {
     if (!open) {
       return;
-    }
-
-    const smallScreen = window.matchMedia("(max-width: 639px)").matches;
-    const previous = document.body.style.overflow;
-    if (smallScreen) {
-      document.body.style.overflow = "hidden";
     }
 
     function onKeyDown(event: KeyboardEvent) {
@@ -113,15 +129,19 @@ export function BeverageBot() {
     }
 
     function onPointerDown(event: PointerEvent) {
-      if (!panelRef.current?.contains(event.target as Node)) {
-        setOpen(false);
+      const target = event.target;
+      if (!(target instanceof Node) || panelRef.current?.contains(target)) {
+        return;
       }
+      if (target instanceof Element && target.closest("[data-bob-launch]")) {
+        return;
+      }
+      setOpen(false);
     }
 
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
     return () => {
-      document.body.style.overflow = previous;
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
     };
@@ -330,17 +350,28 @@ export function BeverageBot() {
           <button
             ref={launcherRef}
             type="button"
-            className="bob-pop flex items-center gap-3 rounded-full border border-line bg-white py-1.5 pr-5 pl-1.5 shadow-[0_12px_40px_rgba(33,5,87,0.18)] hover:border-forest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+            className="bob-pop relative flex items-center gap-3 rounded-full border border-line bg-white py-1.5 pr-5 pl-1.5 shadow-[0_12px_40px_rgba(33,5,87,0.18)] hover:border-forest focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
             aria-expanded={false}
             aria-haspopup="dialog"
+            aria-label={showPrompt ? "Ask me if we take your container. Open chat with Bob" : "Open chat with Bob"}
             onClick={() => setOpen(true)}
           >
-            <BobAvatar size="lg" />
+            {showPrompt ? (
+              <span className="bob-pop absolute bottom-[calc(100%+0.6rem)] left-0.5 w-[11.6rem] rounded-2xl rounded-bl-md border border-line bg-white px-3 py-2 text-left text-xs leading-snug font-medium text-ink shadow-[0_10px_28px_rgba(33,5,87,0.16)]">
+                Ask me if we take your container
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-[7px] left-[1.05rem] h-3 w-3 rotate-45 border-r border-b border-line bg-white"
+                />
+              </span>
+            ) : null}
+            <span className="bob-head-bounce inline-flex">
+              <BobAvatar size="lg" />
+            </span>
             <span className="pr-1 text-left">
               <span className="block font-display text-lg leading-none text-ink">Bob</span>
               <span className="mt-1 block text-xs leading-none text-stone">Beverage Bot</span>
             </span>
-            <span className="sr-only">Open chat with Bob the Beverage Bot</span>
           </button>
         </div>
       )}

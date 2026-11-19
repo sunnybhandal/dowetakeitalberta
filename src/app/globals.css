@@ -104,13 +104,35 @@ button {
   animation: bob-pop 220ms ease-out;
 }
 
+@keyframes bob-head-bounce {
+  0%,
+  16%,
+  100% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(-6px);
+  }
+  10% {
+    transform: translateY(0);
+  }
+  13% {
+    transform: translateY(-3px);
+  }
+}
+
+.bob-head-bounce {
+  animation: bob-head-bounce 5s ease-in-out 0.8s infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .list-in,
-  .bob-pop {
+  .bob-pop,
+  .bob-head-bounce {
     animation: none;
   }
 }

@@ -37,39 +37,32 @@ export const acceptedProducts: Product[] = [
   {
     id: "glass-bottles",
     name: "Glass bottles",
-    description: "Beer, wine, liquor, coolers, pop, and juice in clear, green, or brown glass.",
+    description: "Beer, wine, liquor, pop, and juice in clear, green, or brown glass.",
     photos: [
       photo("Beer", "glass-beer.jpg", "Brown glass beer bottle"),
       photo("Wine", "glass-wine.jpg", "Green glass wine bottle"),
       photo("Liquor", "glass-liquor.jpg", "Clear glass liquor bottle"),
-      photo("Cooler", "glass-cooler.jpg", "Glass cooler bottle"),
       photo("Pop", "glass-pop.jpg", "Glass pop bottle"),
       photo("Juice", "glass-juice.jpg", "Glass juice bottle"),
     ],
   },
   {
-    id: "milk-jugs",
-    name: "Milk jugs",
-    description: "Plastic milk jugs. Give them a quick rinse so they’re empty.",
-    photos: [photo("Milk jug", "milk-jug.jpg", "Plastic milk jug")],
-  },
-  {
-    id: "cartons",
-    name: "Milk and cream cartons",
-    description: "Gable-top cartons of milk, cream, buttermilk, half-and-half, juice, and eggnog.",
-    photos: [photo("Milk and cream", "carton-milk-cream.jpg", "Milk carton and cream carton")],
-  },
-  {
-    id: "juice-boxes",
-    name: "Juice boxes",
-    description: "Juice and other drinks in rectangle boxes.",
-    photos: [photo("Apple, Orange, Etc.", "juice-box-apple.jpg", "Juice box")],
+    id: "milk-products",
+    name: "Milk Products",
+    description: "Plastic milk jugs and gable-top cartons of milk, cream, buttermilk, half-and-half, juice, and eggnog. Give them a quick rinse so they’re empty.",
+    photos: [
+      photo("Jugs", "milk-jug.jpg", "Plastic milk jug"),
+      photo("Cartons", "carton-milk-cream.jpg", "Milk carton and cream carton"),
+    ],
   },
   {
     id: "drink-pouches",
-    name: "Drink pouches",
-    description: "Flexible drink pouches, including kids’ juice pouches. Empty them first.",
-    photos: [photo("Juice pouch", "drink-pouch.jpg", "Flexible juice drink pouch")],
+    name: "Drink Pouches",
+    description: "Juice boxes and flexible drink pouches. Empty them first.",
+    photos: [
+      photo("Juice Box", "juice-box-apple.jpg", "Juice box"),
+      photo("Juice Pouch", "drink-pouch.jpg", "Flexible juice drink pouch"),
+    ],
   },
   {
     id: "wine-boxes",
@@ -86,15 +79,15 @@ export const acceptedProducts: Product[] = [
       photo("Kefir", "kefir.jpg", "Kefir bottle"),
     ],
   },
+  {
+    id: "coffee-creamer",
+    name: "Coffee creamer",
+    description: "Liquid coffee creamer, including oil-based creamer. Empty it and give it a quick rinse.",
+    photos: [photo("Coffee creamer", "coffee-creamer.jpg", "Bottle of liquid coffee creamer")],
+  },
 ];
 
 export const declinedProducts: Product[] = [
-  {
-    id: "coffee-creamer",
-    name: "Oil-based coffee creamer",
-    description: "Oil-based coffee creamer containers. Dairy cream, milk, and liquid coffee cream are accepted.",
-    photos: [photo("Coffee creamer", "coffee-creamer.jpg", "Bottle of liquid coffee creamer")],
-  },
   {
     id: "powdered-creamer",
     name: "Powdered creamer",

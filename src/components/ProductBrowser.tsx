@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { acceptedProducts, declinedProducts, type Product } from "@/lib/products";
 
 type Choice = "yes" | "no";
@@ -80,31 +80,40 @@ export function ProductBrowser() {
 
 function CategorySections({ items }: { items: Product[] }) {
   return (
-    <div className="mt-10">
-      {items.map((item) => (
-        <section key={item.id} aria-labelledby={`category-${item.id}`} className="border-t border-line py-10 first:border-t-0 first:pt-0">
-          <h3 id={`category-${item.id}`} className="font-display text-2xl leading-tight text-ink sm:text-3xl">
-            {item.name}
-          </h3>
-          <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
-            {item.photos?.map((photo) => (
-              <li key={photo.src}>
-                <figure className="overflow-hidden rounded-xl border border-line bg-white">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    width={1024}
-                    height={1024}
-                    className="aspect-square w-full object-cover"
-                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw"
-                  />
-                  <figcaption className="border-t border-line px-3 py-2.5 text-sm font-medium text-ink">{photo.name}</figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+    <div className="mt-10 flex flex-col max-lg:divide-y max-lg:divide-line lg:flex-row lg:flex-wrap lg:items-stretch lg:overflow-hidden">
+      {items.map((item) => {
+        const cards = item.photos?.length || 1;
+
+        return (
+          <section
+            key={item.id}
+            aria-labelledby={`category-${item.id}`}
+            className="max-lg:py-10 max-lg:first:pt-0 lg:w-fit lg:max-w-full lg:shrink-0 lg:-mt-px lg:-ml-px lg:border-t lg:border-l lg:border-line lg:p-5"
+            style={{ "--cards": cards } as CSSProperties}
+          >
+            <h3 id={`category-${item.id}`} className="font-display text-[clamp(1rem,5.2vw,1.5rem)] leading-tight whitespace-nowrap text-ink sm:text-3xl">
+              {item.name}
+            </h3>
+            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:w-[calc(var(--cards)*12.5rem+(var(--cards)-1)*1rem)] lg:max-w-full lg:grid-cols-[repeat(var(--cards),minmax(0,1fr))]">
+              {item.photos?.map((photo) => (
+                <li key={photo.src}>
+                  <figure className="overflow-hidden rounded-xl border border-line bg-white">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={1024}
+                      height={1024}
+                      className="aspect-square w-full object-cover"
+                      sizes="(min-width: 1024px) 12.5rem, (min-width: 640px) 30vw, 45vw"
+                    />
+                    <figcaption className="border-t border-line px-3 py-2.5 text-sm font-medium text-ink">{photo.name}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
     </div>
   );
 }
